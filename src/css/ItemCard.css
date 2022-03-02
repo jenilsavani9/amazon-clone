@@ -19,7 +19,7 @@
 }
 
 .item__card__img {
-  max-width: 200px;
+  max-width: 150px;
 }
 
 .add__to__cart__btn {
@@ -30,4 +30,9 @@
   margin: 20px 0;
   font-size: 17px;
   cursor: pointer;
+}
+
+.utem_price {
+  text-align: left;
+  font-weight: bold;
 }

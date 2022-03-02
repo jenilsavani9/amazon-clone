@@ -2,16 +2,22 @@ import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import "../css/Navbar.css";
+import { Link } from "react-router-dom";
+import { useStateValue } from "./StateProvider";
 
 function Navbar() {
+
+  const [{ basket }] = useStateValue();
   return (
     <div className="navbar">
       {/* img */}
-      <img
-        src="https://www.nicepng.com/png/full/16-167642_amazon-logo-amazon-logo-white-text.png"
-        alt="logo"
-        className="img__logo"
-      />
+      <Link to="/">
+        <img
+          src="https://www.nicepng.com/png/full/16-167642_amazon-logo-amazon-logo-white-text.png"
+          alt="logo"
+          className="img__logo"
+        />
+      </Link>
       {/* search */}
       <div className="search">
         <input type="text" className="search__input" />
@@ -33,10 +39,12 @@ function Navbar() {
         </div>
         <div className="option__three">
           <div>
-            <ShoppingBasketIcon />
+            <Link to="/cart" className="basket_icon">
+              <ShoppingBasketIcon />
+            </Link>
           </div>
           <div className="cart_item">
-            <strong>0</strong>
+            <strong>{basket.length}</strong>
           </div>
         </div>
       </div>
