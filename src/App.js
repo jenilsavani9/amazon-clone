@@ -2,19 +2,32 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import Cart from "./components/Cart";
+import Login from "./components/Login";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Fragment } from "react";
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route exact path="/cart" element={<Cart />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/" element={
+            <Fragment>
+              <Navbar />
+              <Home />
+              <Footer />
+            </Fragment>
+          } />
+          <Route exact path="/cart" element={
+            <Fragment>
+              <Navbar />
+              <Cart />
+              <Footer />
+            </Fragment>
+          } />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );

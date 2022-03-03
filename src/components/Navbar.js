@@ -25,12 +25,14 @@ function Navbar() {
       </div>
       {/* options */}
       <div className="nav__options">
-        <div className="option__one">
-          <div className="one_up">Hello, User</div>
-          <div className="one_down">
-            <strong>Sign In</strong>
+        <Link to='/login' className="login_nav_link">
+          <div className="option__one">
+            <div className="one_up">Hello, User</div>
+            <div className="one_down">
+              <strong>Sign In</strong>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="option__two">
           <div className="two_up">Return</div>
           <div className="two_down">
