@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/Cart.css";
+import CartItem from "./CartItem";
 import { getSubtotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
 
@@ -15,18 +16,7 @@ function Cart(props) {
         ) : (
           basket.map((item) => {
             return (
-              <div className="items_for_order">
-                <div className="order_item_img">
-                  <img src={item.imgUrl} alt="" className="cart_item_image" />
-                </div>
-                <div className="order_item_info">
-                  <div className="order_item_name">{item.title}</div>
-                  <div className="order_item_price">Price : $ {item.price}</div>
-                </div>
-                <div className="remove_cart">
-                  <button className="remove_cart_btn">Remove Item</button>
-                </div>
-              </div>
+              <CartItem key={item.id} title={item.title} price={item.price} imgUrl={item.imgUrl} id={item.id} stars={item.stars} />
             );
           })
         )}

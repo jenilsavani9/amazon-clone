@@ -6,6 +6,7 @@
   align-items: center;
   background-color: white;
   margin: 20px 0;
+  z-index: 1;
 }
 
 .title {

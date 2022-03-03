@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "./Card";
 import "../css/Home.css";
 import ItemCard from "./ItemCard";
 
@@ -14,18 +13,34 @@ function Home() {
         />
       </div>
 
-      <div className="card__one">
-        <Card
-          heading="Up to 70% off | Clearance store"
-          imgUrl="https://images-eu.ssl-images-amazon.com/images/G/31/img22/Electronics/Clearance/Clearance_store_Desktop_CC_1x._SY304_CB628315133_.jpg"
+      <div className="item__card__one">
+        <ItemCard
+          title="2021 Apple 10.2-inch iPad (Wi-Fi, 64GB) - Space Gray"
+          id={10}
+          stars={5}
+          price={439}
+          imgUrl="https://m.media-amazon.com/images/I/61NGnpjoRDL._AC_SX466_.jpg"
         />
-        <Card
-          heading="For all birthday gifting and celebration needs"
-          imgUrl="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/GWBdaystore/Birthday_PC_CC_1x._SY304_CB663001103_.jpg"
+        <ItemCard
+          title="2020 Apple iPad Air (10.9-inch, Wi-Fi, 64GB) - Space Gray (4th Generation)"
+          id={11}
+          stars={4}
+          price={539}
+          imgUrl="https://images-na.ssl-images-amazon.com/images/I/719UcXKzXHL.__AC_SY445_SX342_QL70_FMwebp_.jpg"
         />
-        <Card
-          heading="Topmost collections to make your wedding special"
-          imgUrl="https://images-eu.ssl-images-amazon.com/images/G/31/img20/Events/Wedding-Store/btf/rev2/PC_CC-11x._SY304_CB653473418_.jpg"
+        <ItemCard
+          title="2021 Apple iPad Mini (Wi-Fi, 64GB) - Space Gray"
+          id={12}
+          stars={5}
+          price={530}
+          imgUrl="https://m.media-amazon.com/images/I/71ey-9D8yDL._AC_SX522_.jpg"
+        />
+        <ItemCard
+          title="2021 Apple 12.9-inch iPad Pro (Wi‑Fi, 128GB) - Space Gray"
+          id={13}
+          stars={5}
+          price={1199}
+          imgUrl="https://m.media-amazon.com/images/I/81+N4PFF7jS._AC_SX522_.jpg"
         />
       </div>
 
