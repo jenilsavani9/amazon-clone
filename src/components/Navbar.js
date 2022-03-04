@@ -4,10 +4,18 @@ import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
 import "../css/Navbar.css";
 import { Link } from "react-router-dom";
 import { useStateValue } from "./StateProvider";
+import { auth } from "./firebase";
 
 function Navbar() {
 
-  const [{ basket }] = useStateValue();
+  const [{ basket, user }] = useStateValue();
+
+  const handleAuth = () => {
+    if (user) {
+      auth.signOut();
+    }
+  }
+
   return (
     <div className="navbar">
       {/* img */}
@@ -25,11 +33,11 @@ function Navbar() {
       </div>
       {/* options */}
       <div className="nav__options">
-        <Link to='/login' className="login_nav_link">
-          <div className="option__one">
-            <div className="one_up">Hello, User</div>
+        <Link to={!user && '/login'} className="login_nav_link">
+          <div className="option__one" onClick={handleAuth}>
+            <div className="one_up">{user ? user?.email : 'Hello, User'}</div>
             <div className="one_down">
-              <strong>Sign In</strong>
+              <strong>{user ? 'Sign Out' : 'Sign In'}</strong>
             </div>
           </div>
         </Link>

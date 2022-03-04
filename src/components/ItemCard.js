@@ -4,8 +4,15 @@ import { useStateValue } from "./StateProvider";
 
 function ItemCard(props) {
 
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
   const addToBasket = () => {
+
+    dispatch({
+      type: 'CHANGE_LOADER',
+      loader: true,
+      loader_status: 100
+    });
+
     dispatch({
       type: 'ADD_TO_BASKET',
       item: {
@@ -14,8 +21,8 @@ function ItemCard(props) {
         imgUrl: props.imgUrl,
         price: props.price,
         stars: props.stars
-      }
-    })
+      },
+    });
   }
 
   return (

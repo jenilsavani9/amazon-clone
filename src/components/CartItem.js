@@ -5,6 +5,13 @@ function CartItem(props) {
     const [{ basket }, dispatch] = useStateValue();
 
     const removeFromBasket = () => {
+
+        dispatch({
+            type: 'CHANGE_LOADER',
+            loader: true,
+            loader_status: 100
+        });
+
         dispatch({
             type: 'REMOVE_FROM_BASKET',
             item: {

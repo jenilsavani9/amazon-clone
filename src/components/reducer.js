@@ -1,5 +1,8 @@
 export const initialState = {
-    basket: []
+    basket: [],
+    user: null,
+    loader: false,
+    loader_status: 0
 }
 
 export const getSubtotal = (basket) => basket?.reduce((amount, item) => item.price + amount, 0);
@@ -9,7 +12,7 @@ const reducer = (state, action) => {
         case 'ADD_TO_BASKET':
             return {
                 ...state,
-                basket: [...state.basket, action.item]
+                basket: [...state.basket, action.item],
             };
         case 'REMOVE_FROM_BASKET':
             const index = state.basket.findIndex(
@@ -22,6 +25,18 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 basket: newBasket,
+            }
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user
+            }
+        case 'CHANGE_LOADER':
+            console.log(action.loader);
+            return {
+                ...state,
+                loader: action.loader,
+                loader_status: action.loader_status
             }
         default:
             return state;

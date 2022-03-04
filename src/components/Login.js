@@ -1,8 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "../css/Login.css";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  const [{}, dispatch] = useStateValue();
+
+  const signIn = (e) => {
+    e.preventDefault();
+
+    dispatch({
+      type: "CHANGE_LOADER",
+      loader: true,
+      loader_status: 40,
+    });
+
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((auth) => {
+        dispatch({
+          type: "CHANGE_LOADER",
+          loader: true,
+          loader_status: 100,
+        });
+        if (auth) {
+          navigate("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+
+    auth
+      .createUserWithEmailAndPassword(email, password)
+      .then((auth) => {
+        if (auth) {
+          navigate("/");
+        }
+      })
+      .catch((error) => alert(error.message));
+  };
+
   return (
     <div className="login">
       <Link to="/">
@@ -18,24 +64,37 @@ function Login() {
         <form className="login_form">
           <div>
             <h5 className="email_h5">E-mail</h5>
-            <input type="email" className="login_email" />
+            <input
+              type="email"
+              className="login_email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
           <div>
             <h5 className="password_h5">Password</h5>
-            <input type="password" className="login_password" />
+            <input
+              type="password"
+              className="login_password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
           </div>
-          <button className="login_btn">Sign In</button>
+          <button className="login_btn" onSubmit={signIn} onClick={signIn}>
+            Sign In
+          </button>
+
+          <p>
+            By continuing, you agree to Amazon's Conditions of Use and Privacy
+            Notice.
+          </p>
+
+          <button className="login_new_ac_btn" onClick={register}>
+            Create your Amazon account
+          </button>
         </form>
-
-        <p>
-          By continuing, you agree to Amazon's Conditions of Use and Privacy
-          Notice.
-        </p>
-      </div>
-
-      <div className="login_new_link">
-        <p>New to Amazon?</p>
-        <button className="login_new_ac_btn">Create your Amazon account</button>
       </div>
     </div>
   );
