@@ -1,0 +1,51 @@
+.checkout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 716px;
+}
+
+.checkout_heading {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.checkout_info_1,
+.checkout_info_2,
+.checkout_info_3 {
+  display: flex;
+  border-bottom: 1px solid #dad9d6;
+}
+
+.checkout_address_label,
+.checkout_item_label,
+.checkout_payment_label {
+  max-width: 100px;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.checkout_card_price_total_btn {
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  background-color: #f7ca00;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.checkout_go_to_home {
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+  background-color: #f7ca00;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.checkout_go_to_home_info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

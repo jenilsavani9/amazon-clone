@@ -32,7 +32,6 @@ const reducer = (state, action) => {
                 user: action.user
             }
         case 'CHANGE_LOADER':
-            console.log(action.loader);
             return {
                 ...state,
                 loader: action.loader,

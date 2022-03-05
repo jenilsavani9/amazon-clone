@@ -3,8 +3,11 @@ import "../css/Cart.css";
 import CartItem from "./CartItem";
 import { getSubtotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
+import { useNavigate } from 'react-router-dom';
 
 function Cart(props) {
+
+  const navigate = useNavigate();
   const [{ basket }, dispatch] = useStateValue();
 
   return (
@@ -26,7 +29,7 @@ function Cart(props) {
         <div className="op_two">
           <input type="checkbox" /> This order contains a gift
         </div>
-        <button className="cart_checkout_btn">Proceed to Checkout</button>
+        <button className="cart_checkout_btn" onClick={e => navigate('/checkout')} disabled={getSubtotal(basket) === 0 ? true : false}>Proceed to Checkout</button>
       </div>
     </div>
   );

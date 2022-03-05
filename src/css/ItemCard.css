@@ -9,6 +9,11 @@
   z-index: 1;
 }
 
+.item__card:hover {
+  box-shadow: 0 0 50px rgba(27, 27, 27, 0.7);
+  transition: 0.3s;
+}
+
 .title {
   text-align: left;
   min-height: 70px;
@@ -33,7 +38,7 @@
   cursor: pointer;
 }
 
-.utem_price {
+.item_price {
   text-align: left;
   font-weight: bold;
 }

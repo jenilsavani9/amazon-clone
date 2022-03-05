@@ -26,6 +26,7 @@ function CartItem(props) {
             </div>
             <div className="order_item_info">
                 <div className="order_item_name">{props.title}</div>
+                <div className=''>{"⭐".repeat(props.stars)}</div>
                 <div className="order_item_price">Price : $ {props.price}</div>
             </div>
             <div className="remove_cart">

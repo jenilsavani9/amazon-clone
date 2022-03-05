@@ -8,6 +8,7 @@ import { Fragment, useEffect } from "react";
 import { auth } from "./components/firebase";
 import { useStateValue } from "./components/StateProvider";
 import Loader from "./components/Loader";
+import Payment from "./components/Payment";
 
 function App() {
 
@@ -46,6 +47,13 @@ function App() {
             <Fragment>
               <Navbar />
               <Cart />
+              <Footer />
+            </Fragment>
+          } />
+          <Route exact path="/checkout" element={
+            <Fragment>
+              <Navbar />
+              <Payment />
               <Footer />
             </Fragment>
           } />
