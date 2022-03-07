@@ -9,6 +9,13 @@ import { auth } from "./components/firebase";
 import { useStateValue } from "./components/StateProvider";
 import Loader from "./components/Loader";
 import Payment from "./components/Payment";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+import Orders from "./components/Orders";
+
+const stripePromise = loadStripe(
+  'pk_test_51KaYFbDY3X0pV9CNjZSSXfIwZlWb9yexRBk1Mf7V3Ve4xezMLP9kG9RPVDp5vgUsyb6rwkWEX1q4zHHzdFZzYrEH00Op9wVpxN'
+);
 
 function App() {
 
@@ -36,6 +43,7 @@ function App() {
         <Loader />
         <Routes>
           <Route exact path="/login" element={<Login />} />
+          <Route exact path="/orders" element={<Orders />} />
           <Route exact path="/" element={
             <Fragment>
               <Navbar />
@@ -53,7 +61,9 @@ function App() {
           <Route exact path="/checkout" element={
             <Fragment>
               <Navbar />
-              <Payment />
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
               <Footer />
             </Fragment>
           } />

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Cart(props) {
 
   const navigate = useNavigate();
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
   return (
     <div className="cart">
@@ -29,7 +29,7 @@ function Cart(props) {
         <div className="op_two">
           <input type="checkbox" /> This order contains a gift
         </div>
-        <button className="cart_checkout_btn" onClick={e => navigate('/checkout')} disabled={getSubtotal(basket) === 0 ? true : false}>Proceed to Checkout</button>
+        <button className="cart_checkout_btn" onClick={e => navigate('/checkout')} disabled={(getSubtotal(basket) === 0) || !user ? true : false}>{!user ? 'Login To Checkout' : 'Proceed to Checkout'}</button>
       </div>
     </div>
   );

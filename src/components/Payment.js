@@ -1,18 +1,71 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CheckoutItem from "./CheckoutItem";
 import { useStateValue } from "./StateProvider";
 import { getSubtotal } from "./reducer";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import axios from "./axios";
 
 import "../css/Payment.css";
 
 function Payment() {
   const navigate = useNavigate();
 
+  const [{ basket, user }] = useStateValue();
+
+  const stripe = useStripe();
+  const elements = useElements();
+
+  const [error, setError] = useState(null);
+  const [disable, setDisable] = useState(true);
+
+  const [processing, setProcessing] = useState("");
+  const [succeeded, setSucceeded] = useState(false);
+
+  const [clientSecret, setClientSecret] = useState(true);
+
+  useEffect(() => {
+    const getClientSecret = async () => {
+      const res = await axios({
+        method: "post",
+        url: `/payments/create?total=${getSubtotal(basket) * 100}`,
+      });
+      setClientSecret(res.data.clientSecret);
+    };
+
+    getClientSecret();
+  }, [basket]);
+
+  console.log(clientSecret);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setProcessing(true);
+
+    const payload = await stripe
+      .confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+        },
+      })
+      .then(({ paymentIntent }) => {
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+
+        navigate("/orders", { replace: true });
+      });
+  };
+
+  const handleChange = (event) => {
+    setDisable(event.empty);
+    setError(event.error ? event.error.massage : "");
+  };
+
   const goToHome = () => {
     navigate("/");
   };
-  const [{ basket, user }] = useStateValue();
+
   return (
     <div className="checkout">
       <div className="checkout_heading">
@@ -57,18 +110,20 @@ function Payment() {
           </div>
           <div className="checkout_info_3">
             <div className="checkout_payment_label">Payment Method</div>
-            <div>
-              <div className="checkout_card_detail">Card Details</div>
-              <div className="checkout_card_num_date">
-                <div className="checkout_card_number">Card Number</div>
-                <div className="checkout_card_date">Date</div>
-              </div>
-              <div className="checkout_card_price_total">
-                <div>Order total : $ {getSubtotal(basket)}</div>
-                <button className="checkout_card_price_total_btn">
-                  Buy Now
+            <div className="payment_card_details">
+              <form action="" onSubmit={handleSubmit}>
+                <CardElement onChange={handleChange} />
+                <div className="payment_item_price_total">
+                  Order Total : $ {getSubtotal(basket)}
+                </div>
+                <button
+                  className="payment_make_btn"
+                  disabled={processing || disable || succeeded}
+                >
+                  {processing ? " Processing.." : "Make Payment"}
                 </button>
-              </div>
+              </form>
+              {error && <div>{error}</div>}
             </div>
           </div>
         </div>
