@@ -10,7 +10,7 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const [{}, dispatch] = useStateValue();
+  const [{ }, dispatch] = useStateValue();
 
   const signIn = (e) => {
     e.preventDefault();
@@ -39,9 +39,20 @@ function Login() {
   const register = (e) => {
     e.preventDefault();
 
+    dispatch({
+      type: "CHANGE_LOADER",
+      loader: true,
+      loader_status: 40,
+    });
+
     auth
       .createUserWithEmailAndPassword(email, password)
       .then((auth) => {
+        dispatch({
+          type: "CHANGE_LOADER",
+          loader: true,
+          loader_status: 100,
+        });
         if (auth) {
           navigate("/");
         }
@@ -82,7 +93,7 @@ function Login() {
               required
             />
           </div>
-          <button className="login_btn" onSubmit={signIn} onClick={signIn}>
+          <button className="login_btn" onClick={signIn}>
             Sign In
           </button>
 

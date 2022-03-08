@@ -31,7 +31,9 @@ function CheckoutItem(props) {
                 <div className="checkout_item__name">{props.title}</div>
                 <div className='checkout_item__star'>{"⭐".repeat(props.stars)}</div>
                 <div className="checkout_item__price">Price : $ {props.price}</div>
-                <button className="checkout_item_remove_btn" onClick={removeFromBasket}>Remove Item</button>
+                {!props.hideBtn && (
+                    <button className="checkout_item_remove_btn" onClick={removeFromBasket}>Remove Item</button>
+                )}
             </div>
         </div>
     )

@@ -43,11 +43,10 @@ function App() {
         <Loader />
         <Routes>
           <Route exact path="/login" element={<Login />} />
-          <Route exact path="/orders" element={<Orders />} />
-          <Route exact path="/" element={
+          <Route exact path="/orders" element={
             <Fragment>
               <Navbar />
-              <Home />
+              <Orders />
               <Footer />
             </Fragment>
           } />
@@ -64,6 +63,13 @@ function App() {
               <Elements stripe={stripePromise}>
                 <Payment />
               </Elements>
+              <Footer />
+            </Fragment>
+          } />
+          <Route exact path="/" element={
+            <Fragment>
+              <Navbar />
+              <Home />
               <Footer />
             </Fragment>
           } />

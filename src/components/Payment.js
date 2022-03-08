@@ -5,13 +5,13 @@ import { getSubtotal } from "./reducer";
 import { Navigate, useNavigate } from "react-router-dom";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import axios from "./axios";
-
 import "../css/Payment.css";
+import { db } from "./firebase";
 
 function Payment() {
   const navigate = useNavigate();
 
-  const [{ basket, user }] = useStateValue();
+  const [{ basket, user }, dispatch] = useStateValue();
 
   const stripe = useStripe();
   const elements = useElements();
@@ -36,8 +36,6 @@ function Payment() {
     getClientSecret();
   }, [basket]);
 
-  console.log(clientSecret);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setProcessing(true);
@@ -49,9 +47,20 @@ function Payment() {
         },
       })
       .then(({ paymentIntent }) => {
+
+        db.collection('users').doc(user?.uid).collection('orders').doc(paymentIntent.id).set({
+          basket: basket,
+          amount: paymentIntent.amount,
+          created: paymentIntent.created
+        })
+
         setSucceeded(true);
         setError(null);
         setProcessing(false);
+
+        dispatch({
+          type: 'EMPTY_BASKET'
+        })
 
         navigate("/orders", { replace: true });
       });

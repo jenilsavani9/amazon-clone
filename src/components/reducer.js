@@ -37,6 +37,11 @@ const reducer = (state, action) => {
                 loader: action.loader,
                 loader_status: action.loader_status
             }
+        case 'EMPTY_BASKET':
+            return {
+                ...state,
+                basket: []
+            }
         default:
             return state;
     }

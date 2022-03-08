@@ -1,0 +1,41 @@
+.orders_your_orders {
+  text-align: center;
+}
+
+.orders {
+  margin-bottom: 20px;
+  min-height: 677px;
+}
+
+.orders_order {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.order_time_date_order_id {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order {
+  width: 800px;
+  padding: 20px 40px;
+  margin-bottom: 20px;
+  background-color: rgb(240, 240, 240);
+}
+
+.order_id {
+  padding-top: 10px;
+}
+
+.order_page_total {
+  font-size: 19px;
+  font-weight: bold;
+  text-align: end;
+}
+
+.orders_login_or_not_message {
+  text-align: center;
+}

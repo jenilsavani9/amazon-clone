@@ -42,10 +42,12 @@ function Navbar() {
           </div>
         </Link>
         <div className="option__two">
-          <div className="two_up">Return</div>
-          <div className="two_down">
-            <strong>& Orders</strong>
-          </div>
+          <Link to='/orders' className="option_two_order_link">
+            <div className="two_up">Return</div>
+            <div className="two_down">
+              <strong>& Orders</strong>
+            </div>
+          </Link>
         </div>
         <div className="option__three">
           <div>
