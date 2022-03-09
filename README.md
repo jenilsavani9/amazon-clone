@@ -59,6 +59,18 @@ Start the server
 ```
 
 open http://localhost:3000/ 
+
+
+### Database & Payment SetUp
+
+#### Firebase SetUp
+
+create Firebase Project and copy Your API key and change apiKey in ./src/components/firebase.js > firebaseConfig object.
+
+#### Stripe SetUp
+
+Create stripe Test API keys and change Publishable key in stripePromise variable in App.js File and change Secret key in ./functions/index.js stripe variable.
+
 ## Screenshots
 
 - Sign-In Page
