@@ -3,9 +3,6 @@
 ![Node js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-[![web site link](https://img.shields.io/website-up-down-green-red/http/monip.org.svg)](https://clone-e4b53.web.app/)
-
-
 ## Amazon Clone
 
 This is a clone of popular e-commmerce website Amazon. I have created it with React in frontend, Node and Express for backend and Firebase for storing data and stripe for payment processing.
